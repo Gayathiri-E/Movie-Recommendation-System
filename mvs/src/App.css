@@ -1,0 +1,64 @@
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.search-bar {
+  margin: 20px 0;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 300px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.movie-item {
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: left;
+  background-color: #f9f9f9;
+}
+
+.movie-item img {
+  width: 100%;
+  height: 350px;
+  border-radius: 8px 8px 0 0;
+}
+
+.movie-item h3 {
+  margin: 10px 0;
+}
+
+.movie-recommendations {
+  margin-top: 40px;
+}
+
+.movie-recommendations h2 {
+  margin-bottom: 20px;
+}
