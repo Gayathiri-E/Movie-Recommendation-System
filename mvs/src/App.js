@@ -26,6 +26,10 @@
 
 
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/Home';
+import Login from './components/Login';
+import Signup from './components/Signup';
 import MovieList from './components/MovieList';
 import MovieRecommendations from './components/MovieRecommendations';
 import SearchBar from './components/SearchBar';
@@ -35,7 +39,7 @@ const moviesData = [
   // Tamil Movies
   {
     id: 1,
-    title: 'Baahubali: The Beginning',
+    title: 'Baahubali',
     director: 'S.S. Rajamouli',
     language: 'Tamil',
     genre: 'Action, Drama',
@@ -61,17 +65,17 @@ const moviesData = [
     genre: 'Action, Drama',
     year: 2019,
     rating: 8.5,
-    image: 'https://image.tmdb.org/t/p/w500/3XqgONtLalKoGfKPVa7bRirBEW7.jpg'
+    image: 'https://fr.web.img5.acsta.net/r_1280_720/pictures/19/09/30/10/52/0631736.jpg'
   },
   {
     id: 4,
-    title: 'Super Deluxe',
-    director: 'Thiagarajan Kumararaja',
+    title: 'Pokkiri',
+    director: 'PrabhuDeva',
     language: 'Tamil',
-    genre: 'Comedy, Crime, Drama',
-    year: 2019,
-    rating: 8.4,
-    image: 'https://image.tmdb.org/t/p/w500/9zH2YjP0sVg5GmpJdHgfhz2O8Bq.jpg'
+    genre: 'Action, Drama',
+    year: 2007,
+    rating: 8.8,
+    image: 'https://images-na.ssl-images-amazon.com/images/S/pv-target-images/981d46201b9ef67d751c41631d7f676f6e89da69d7f2962ecb8641502864661a._RI_TTW_.jpg'
   },
   {
     id: 5,
@@ -81,7 +85,7 @@ const moviesData = [
     genre: 'Drama',
     year: 2018,
     rating: 8.4,
-    image: 'https://image.tmdb.org/t/p/w500/6aumP0MooMAmoxkYT0yfGW3IyUZ.jpg'
+    image: 'https://flxt.tmsimg.com/assets/p15996849_p_v10_ab.jpg'
   },
   {
     id: 6,
@@ -91,7 +95,7 @@ const moviesData = [
     genre: 'Action, Crime, Drama',
     year: 2016,
     rating: 6.2,
-    image: 'https://image.tmdb.org/t/p/w500/x6LNzrCO1s84W3X5eL8ZC0DQ6TY.jpg'
+    image: 'https://images.justwatch.com/poster/242843440/s718/kabali.%7Bformat%7D'
   },
   {
     id: 7,
@@ -101,7 +105,7 @@ const moviesData = [
     genre: 'Action, Drama',
     year: 2018,
     rating: 6.8,
-    image: 'https://image.tmdb.org/t/p/w500/yZ7LFQHA0EeUPUL4Bv4bdhlsVK3.jpg'
+    image: 'https://static.moviecrow.com/gallery/20180224/131802-kaala%20po%203.jpg'
   },
   {
     id: 8,
@@ -111,7 +115,7 @@ const moviesData = [
     genre: 'Action, Crime, Thriller',
     year: 2015,
     rating: 8.5,
-    image: 'https://image.tmdb.org/t/p/w500/5m7zzP8FgspGceg3WxeXVjMBVOa.jpg'
+    image: 'https://imgsrc.cineserie.com/2018/01/1943291.jpg?ver=1'
   },
   {
     id: 9,
@@ -121,7 +125,7 @@ const moviesData = [
     genre: 'Drama',
     year: 2017,
     rating: 8.4,
-    image: 'https://image.tmdb.org/t/p/w500/xhx5UcdvpNb1R53RzfyIBnkZgkK.jpg'
+    image: 'https://fr.web.img3.acsta.net/pictures/18/01/03/10/13/1866596.jpg'
   },
   {
     id: 10,
@@ -131,17 +135,17 @@ const moviesData = [
     genre: 'Comedy, Crime, Thriller',
     year: 2013,
     rating: 8.3,
-    image: 'https://image.tmdb.org/t/p/w500/lq0J39ceVpdKZw6JRyWrQR8rkbB.jpg'
+    image: 'https://1.bp.blogspot.com/-a9PhVGGNI4E/UVZrAWkRQlI/AAAAAAAANJg/xn2U7utau1A/s1600/Soodhu+Kavvum+Movie+Posters+(1).jpg'
   },
   {
     id: 11,
-    title: 'Visaaranai',
-    director: 'Vetrimaaran',
+    title: 'Sillunu Oru Kaadhal',
+    director: 'Krishna',
     language: 'Tamil',
-    genre: 'Crime, Drama, Thriller',
-    year: 2015,
-    rating: 8.1,
-    image: 'https://image.tmdb.org/t/p/w500/sS1nG1MAx6a4mdVR7I9VzB9upq7.jpg'
+    genre: 'Drama,Romance',
+    year: 2006,
+    rating: 8.9,
+    image: 'https://wallpapercave.com/wp/wp7061022.jpg'
   },
   {
     id: 12,
@@ -151,37 +155,37 @@ const moviesData = [
     genre: 'Drama, Romance',
     year: 2018,
     rating: 8.6,
-    image: 'https://image.tmdb.org/t/p/w500/1tI4ATRpn6EneFR9AcljZdS9MrY.jpg'
+    image: 'http://fr.web.img2.acsta.net/pictures/18/09/24/10/22/4543094.jpg'
   },
   {
     id: 13,
-    title: 'Jigarthanda',
-    director: 'Karthik Subbaraj',
+    title: 'Alaipayuthey',
+    director: 'Manirathnam',
     language: 'Tamil',
-    genre: 'Action, Crime, Drama',
-    year: 2014,
-    rating: 8.3,
-    image: 'https://image.tmdb.org/t/p/w500/2JxhMiTpsxLmj7XX4b1bMUBKcQz.jpg'
+    genre: 'Drama , Romance',
+    year: 2000,
+    rating: 8.9,
+    image: 'https://m.media-amazon.com/images/I/81Vq1Kp13iL._AC_UL480_FMwebp_QL65_.jpg'
   },
   {
     id: 14,
-    title: 'Pizza',
-    director: 'Karthik Subbaraj',
+    title: 'Vinnai thandi varuvaya',
+    director: 'Gautham Vasudev Menon',
     language: 'Tamil',
-    genre: 'Horror, Thriller',
-    year: 2012,
-    rating: 7.6,
-    image: 'https://image.tmdb.org/t/p/w500/bfQyHL8NlZg7QfET36XqFGeGlvt.jpg'
+    genre: 'Drama,Love',
+    year: 2010,
+    rating: 8.6,
+    image: 'https://wallpaperaccess.com/full/3805219.jpg',
   },
   {
     id: 15,
-    title: 'Sethupathi',
-    director: 'S.U. Arun Kumar',
+    title: 'Sachein',
+    director: 'John',
     language: 'Tamil',
-    genre: 'Action, Crime, Drama',
-    year: 2016,
-    rating: 7.1,
-    image: 'https://image.tmdb.org/t/p/w500/7AUpS1d2yfb2Vu95T1BoXw7pgiA.jpg'
+    genre: 'Drama , Love',
+    year: 2005,
+    rating: 8.9,
+    image: 'https://e1.pxfuel.com/desktop-wallpaper/149/288/desktop-wallpaper-sachien-vijay-genelia-d-souza-bipasha-basu-vadivelu-sachin-movie.jpg'
   },
   {
     id: 16,
@@ -191,7 +195,7 @@ const moviesData = [
     genre: 'Action, Drama, Thriller',
     year: 2017,
     rating: 7.7,
-    image: 'https://image.tmdb.org/t/p/w500/fdBB0iHxUmY3pNoF3jXB8V5rxdr.jpg'
+    image: 'https://3.bp.blogspot.com/-u5OuvAZFoJI/WVxnbWL4hoI/AAAAAAAAj-k/O0iBcxLjShMyn67MwxGMJuDBB34wjaKuwCLcBGAs/s1600/Mersal-poster-1.jpg'
   },
   {
     id: 17,
@@ -201,7 +205,7 @@ const moviesData = [
     genre: 'Drama, Sport',
     year: 2016,
     rating: 7.7,
-    image: 'https://image.tmdb.org/t/p/w500/bm8Q0qfTDj5LxH39c5GWXb6f3n6.jpg'
+    image: 'https://moviegalleri.net/wp-content/gallery/irudhi-suttru-audio-release-posters/irudhi_suttru_movie_audio_release_posters_1ef289d.jpg'
   },
   {
     id: 18,
@@ -211,28 +215,78 @@ const moviesData = [
     genre: 'Action, Crime, Drama',
     year: 2018,
     rating: 8.4,
-    image: 'https://image.tmdb.org/t/p/w500/9PZZG6inD5acxLJ5eF7JHQlF4Tm.jpg'
+    image: 'https://a.ltrbxd.com/resized/film-poster/3/4/4/5/2/0/344520-vada-chennai-0-460-0-690-crop.jpg?k=06125039cf'
   },
   {
     id: 19,
     title: 'Thuppakki',
     director: 'A.R. Murugadoss',
     language: 'Tamil',
-    genre: 'Action, Thriller',
+    genre: 'Action,Crime, Thriller',
     year: 2012,
     rating: 7.8,
-    image: 'https://image.tmdb.org/t/p/w500/sKfCQlH6dxiKUtUSzaWeXI7hEsy.jpg'
+    image: 'https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/thuppakki-et00010412-1655889794.jpg'
   },
   {
     id: 20,
-    title: 'Indian',
+    title: 'Indian2',
     director: 'S. Shankar',
     language: 'Tamil',
     genre: 'Drama, Action, Thriller',
-    year: 1996,
+    year: 2024,
     rating: 8.1,
-    image: 'https://image.tmdb.org/t/p/w500/qzA87Wf4jo1h8JMkZ5o2gV6hZvZ.jpg'
+    image: 'https://akm-img-a-in.tosshub.com/indiatoday/images/photogallery/201901/Indian_2_-_1_IT_1547788035006.jpg?VersionId=ZTbFvpSSbbRlhcopCMXan5k68bvl5q6G&size=686:*'
   },
+  { id: 28,
+    title: "Vikram",
+    director: "Lokesh Kanagaraj", 
+    language: "Tamil", 
+    genre: "Action, Crime, Thriller", 
+    year: 2022, 
+    rating: 8.8, 
+    image: "https://fr.web.img2.acsta.net/pictures/22/05/04/09/42/2589693.jpg" 
+  },
+
+  { id: 29,
+    title: "Kaithi", 
+    director: "Lokesh Kanagaraj", 
+    language: "Tamil", 
+    genre: "Action, Crime,Thriller", 
+    year: 2019, 
+    rating: 8.5, 
+    image: "https://m.media-amazon.com/images/M/MV5BMzNjMDhmYzEtM2YxOC00NzZjLThkODctZjI4M2UyOWIyOTZmXkEyXkFqcGdeQXVyNzcxMzI4Njk@._V1_FMjpg_UX1000_.jpg" 
+  },
+
+  { id: 30, 
+    title: "Maanagaram", 
+    director: "Lokesh Kanagaraj", 
+    language: "Tamil", 
+    genre: "Action, Crime, Thriller", 
+    year: 2017, 
+    rating: 8.1, 
+    image: "https://fr.web.img6.acsta.net/pictures/20/05/08/20/43/3400430.jpg" 
+  },
+  {
+    id: 31,
+    title: "Soorarai Pottru",
+    director: "Sudha Kongara",
+    language: "Tamil",
+    genre: "Drama, sport",
+    year: 2020,
+    rating: 9.1,
+    image:"https://m.media-amazon.com/images/M/MV5BOThkNjFiMzMtNGY5Yi00MDAxLTgxYjItMTZiN2RiMGNiOTA4XkEyXkFqcGdeQXVyODIwMDI1NjM@._V1_FMjpg_UX1000_.jpg"
+  },
+  {
+    id: 32,
+    title: "Deiva Thirumagal",
+    director: "A. L. Vijay",
+    language: "Tamil",
+    genre: "Drama, Family",
+    year: 2011,
+    rating: 8.1,
+    image: "https://img.seriebox.com/films/102/102058/affich_102058_1.jpg"
+},
+  
 
   // English Movies
   {
@@ -295,7 +349,7 @@ const moviesData = [
     genre: 'Crime, Drama, Thriller',
     year: 2013,
     rating: 8.7,
-    image: 'https://image.tmdb.org/t/p/w500/y90cJjfR2uS3WpSjryPBoUifI.jpg'
+    image: 'http://static.moviecrow.com/marquee/drishyam-new-poster/67289_thumb_665.jpg'
   },
   {
     id: 27,
@@ -305,91 +359,109 @@ const moviesData = [
     genre: 'Comedy, Drama, Romance',
     year: 2015,
     rating: 8.3,
-    image: 'https://image.tmdb.org/t/p/w500/nnPPLlEVh4GGOo7NOwQl3p6PNdF.jpg'
+    image: 'https://images-na.ssl-images-amazon.com/images/I/71uDxcc9O+L._SX600_.jpg'
   },
-
+  {
+    id: 33,
+    title: "Hridayam",
+    director: "Vineeth Sreenivasan",
+    language: "Malayalam",
+    genre: "Drama, Romance",
+    year: 2022,
+    rating: 8.2,
+    image: "https://m.media-amazon.com/images/M/MV5BMTkzM2I3YzQtNjQ0Ni00OTY2LWJjNDUtMDAxMWExYTlkZGQxXkEyXkFqcGdeQXVyNTA2MzMwMjA@._V1_FMjpg_UX1000_.jpg"
+  },
+  {
+    id: 34,
+    title: "2018",
+    director: "Jude Anthany Joseph",
+    language: "Malayalam",
+    genre: "Drama, Thriller",
+    year: 2023,
+    rating: 8.4,
+    image: "https://static1.showtimes.com/poster/660x980/2018-malayalam-169502.jpg"
+},
+{
+  id: 35,
+  title: "Bangalore Days",
+  director: "Anjali Menon",
+  language: "Malayalam",
+  genre: "Comedy, Drama, Romance",
+  year: 2014,
+  rating: 8.3,
+  image: "https://i.pinimg.com/originals/a9/88/a8/a988a84fb459fdc2c7883e8290afd52b.jpg"
+},
   // Hindi Movies
   {
-    id: 28,
+    id: 36,
     title: 'Dilwale Dulhania Le Jayenge',
     director: 'Aditya Chopra',
     language: 'Hindi',
     genre: 'Drama, Romance',
     year: 1995,
     rating: 8.1,
-    image: 'https://image.tmdb.org/t/p/w500/2CAL2433ZeIihfX1Hb2139CX0pW.jpg'
+    image: 'https://image3.mouthshut.com/images/imagesp/925747623s.jpg'
   },
   {
-    id: 29,
+    id: 37,
     title: '3 Idiots',
     director: 'Rajkumar Hirani',
     language: 'Hindi',
     genre: 'Comedy, Drama',
     year: 2009,
     rating: 8.4,
-    image: 'https://image.tmdb.org/t/p/w500/fB4lLlR8zZ800vvaZAKzd8eOidu.jpg'
+    image: 'https://m.media-amazon.com/images/M/MV5BMTY4NTc2NTYzMl5BMl5BanBnXkFtZTcwNDk2MzkwMw@@._V1_FMjpg_UX1000_.jpg'
   },
+  {
+    id: 38,
+    title: "Aashiqui 2",
+    director: "Mohit Suri",
+    language: "Hindi",
+    genre: "Drama, Music, Romance",
+    year: 2013,
+    rating: 7.0,
+    image: "https://cdn.moviescore.com/posters/22205.jpg"
+},
+{
+    id: 39,
+    title: "Goliyon Ki Raasleela Ram-Leela",
+    director: "Sanjay Leela Bhansali",
+    language: "Hindi",
+    genre: "Drama, Romance",
+    year: 2013,
+    rating: 6.4,
+    image: "https://cdn.movietalkies.com/wp-content/uploads/media/posters/bollywood/movies/2013/ramleela/ramleela-1b.jpg"
+},
+{
+    id: 40,
+    title: "Chennai Express",
+    director: "Rohit Shetty",
+    language: "Hindi",
+    genre: "Action, Comedy, Drama",
+    year: 2013,
+    rating: 6.1,
+    image: "http://2.bp.blogspot.com/-l9HC8EyqPp0/UhCbs7CtdaI/AAAAAAAAAHs/UNQYBFFQmDI/s1600/bollywood-chennai-express-poster-1.jpg"
+}
 
-  // Telugu Movies
-  {
-    id: 30,
-    title: 'Baahubali: The Beginning',
-    director: 'S.S. Rajamouli',
-    language: 'Telugu',
-    genre: 'Action, Drama',
-    year: 2015,
-    rating: 8.1,
-    image: 'https://image.tmdb.org/t/p/w500/jf8e8x4NAAofKJrLhxKPQK4Km8G.jpg'
-  },
-  {
-    id: 31,
-    title: 'Arjun Reddy',
-    director: 'Sandeep Reddy Vanga',
-    language: 'Telugu',
-    genre: 'Drama, Romance',
-    year: 2017,
-    rating: 8.1,
-    image: 'https://image.tmdb.org/t/p/w500/aqH1y6WQLCmfgDS2gT2hZgF5yDv.jpg'
-  },
-  {
-    id: 32,
-    title: 'Ala Vaikunthapurramuloo',
-    director: 'Trivikram Srinivas',
-    language: 'Telugu',
-    genre: 'Action, Drama',
-    year: 2020,
-    rating: 7.9,
-    image: 'https://image.tmdb.org/t/p/w500/8hFVls4jZjzV0LAHKo5sDTfHh42.jpg'
-  },
-  {
-    id: 33,
-    title: 'Jersey',
-    director: 'Gowtam Tinnanuri',
-    language: 'Telugu',
-    genre: 'Drama, Sport',
-    year: 2019,
-    rating: 8.3,
-    image: 'https://image.tmdb.org/t/p/w500/2g3HjHgkCXEjWpU5ZlpMzU8rRgH.jpg'
-  },
-  {
-    id: 34,
-    title: 'Rangasthalam',
-    director: 'Sukumar',
-    language: 'Telugu',
-    genre: 'Action, Drama',
-    year: 2018,
-    rating: 8.4,
-    image: 'https://image.tmdb.org/t/p/w500/fbPKxqoZq18T0J6DlYUfrj6refy.jpg'
-  },
+
+  
 ];
 
-
-
+const groupMoviesByLanguage = (movies) => {
+  return movies.reduce((acc, movie) => {
+    if (!acc[movie.language]) {
+      acc[movie.language] = [];
+    }
+    acc[movie.language].push(movie);
+    return acc;
+  }, {});
+};
 
 function App() {
   const [movies, setMovies] = useState(moviesData);
   const [searchResults, setSearchResults] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
+
 
   const searchMovies = (query) => {
     const results = moviesData.filter(movie =>
@@ -398,6 +470,8 @@ function App() {
     setSearchResults(results);
     if (results.length > 0) {
       recommendMovies(results[0].genre);
+    }else {
+      setRecommendations([]);
     }
   };
 
@@ -407,15 +481,53 @@ function App() {
     );
     setRecommendations(results);
   };
+  
+  const groupedMovies = groupMoviesByLanguage(searchResults.length ? searchResults : movies);
 
-  return (
+// return (
+//   <div className="App">
+//     <h1>Movie Recommendation System</h1>
+//     <SearchBar searchMovies={searchMovies} />
+//     <MovieRecommendations recommendations={recommendations} />
+//     {Object.keys(groupedMovies).map(language => (
+//       <div key={language}>
+//         <h2>{language} Movies</h2>
+//         <MovieList movies={groupedMovies[language]} />
+//       </div>
+//     ))}
+//   </div>
+// );
+// }
+
+
+return (
+  <Router>
     <div className="App">
-      <h1>Movie Recommendation System</h1>
-      <SearchBar searchMovies={searchMovies} />
-      <MovieList movies={searchResults.length ? searchResults : movies} />
-      <MovieRecommendations recommendations={recommendations} />
+      <Switch>
+        <Route path="/Home" exact>
+          <Home />
+        </Route>
+        <Route path="/login" exact>
+          <Login />
+        </Route>
+        <Route path="/signup" exact>
+          <Signup />
+        </Route>
+        <Route path="/movies" exact>
+          <h1>Movie Recommendation System</h1>
+          <SearchBar searchMovies={searchMovies} />
+          <MovieRecommendations recommendations={recommendations} />
+          {Object.keys(groupedMovies).map(language => (
+            <div key={language}>
+              <h2>{language} Movies</h2>
+              <MovieList movies={groupedMovies[language]} />
+            </div>
+          ))}
+        </Route>
+      </Switch>
     </div>
-  );
+  </Router>
+);
 }
 
 export default App;
