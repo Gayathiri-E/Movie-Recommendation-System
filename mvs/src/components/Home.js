@@ -10,17 +10,17 @@
 //   );
 // };
 
-// export default MainPage;
-import React from 'react';
-import { Link } from 'react-router-dom';
+// // export default MainPage;
+// import React from 'react';
+// import { Link } from 'react-router-dom';
 
-const Home = () => {
-  return (
-    <div className="home">
-      <h1>Welcome to the Movie Recommendation System</h1>
-      <Link to="/login">Login</Link> | <Link to="/signup">Signup</Link> | <Link to="/movies">View Movies</Link>
-    </div>
-  );
-};
+// const Home = () => {
+//   return (
+//     <div className="home">
+//       <h1>Welcome to the Movie Recommendation System</h1>
+//       <Link to="/login">Login</Link> | <Link to="/signup">Signup</Link> | <Link to="/movies">View Movies</Link>
+//     </div>
+//   );
+// };
 
-export default Home;
+// export default Home;

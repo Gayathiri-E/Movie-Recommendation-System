@@ -17,6 +17,8 @@ const SearchBar = ({ searchMovies }) => {
         placeholder="Search for movies..."
       />
       <button type="submit">Search</button>
+      <button type="button" className="login-signup-button">Login/Signup</button>
+
     </form>
   );
 };
