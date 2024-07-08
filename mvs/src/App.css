@@ -1,13 +1,16 @@
 .App {
   text-align: center;
   font-family: Arial, sans-serif;
+  background-color: rgb(242, 238, 238);;
 }
 .App h1{
   color:rgb(18, 78, 102);
 }
-
+/* .app1{
+  background-color: rgb(242, 238, 238);;
+} */
 .search-bar {
-  margin: 20px 0;
+  margin: 0px;
 }
 
 .search-bar input {
@@ -69,33 +72,39 @@
 
 .movie-recommendations {
   margin-top: 40px;
-  background-color: rgb(83, 82, 82);
+  background-color: rgb(242, 238, 238);
 }
 
 .movie-recommendations h2 {
   margin-bottom: 20px;
 }
-.login h1{
-  color:white
+
+
+.background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.login-bg {
-  background-image: url("//img.freepik.com/free-photo/movie-background-collage_23-2149876028.jpg");
-  background-size: cover; 
-  background-position: center;
-  height: 100vh; 
-  width: 100%;
-  display: flex; 
-  justify-content: center;
-  /* align-items: center;  */
+.background h1 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
 }
+
 .login {
   padding: 20px;
 }
 
-
 .login h1 {
   margin-bottom: 20px;
+  color: white;
 }
 
 .login form {
@@ -110,7 +119,7 @@
 
 .login form label {
   margin-right: 10px;
-  color:white;
+  color: white;
 }
 
 .login form input {
@@ -121,6 +130,7 @@
 }
 
 .login form button {
+  margin-top: 10px;
   padding: 10px 20px;
   border: none;
   background-color: #007bff;
@@ -130,5 +140,51 @@
 }
 
 .login form button:hover {
+  background-color: #0056b3;
+}
+
+/* Signup Page Styling */
+.signup {
+  padding: 20px;
+}
+
+.signup h1 {
+  margin-bottom: 20px;
+  color: white;
+}
+
+.signup form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup form div {
+  margin-bottom: 10px;
+}
+
+.signup form label {
+  margin-right: 10px;
+  color: white;
+}
+
+.signup form input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #f4eded;
+  border-radius: 4px;
+}
+
+.signup form button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.signup form button:hover {
   background-color: #0056b3;
 }

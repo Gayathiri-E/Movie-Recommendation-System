@@ -1,47 +1,54 @@
+
 // import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
 
-// const Login = () => {
-//   const [email, setEmail] = useState('');
+// const LoginForm = ({ onLogin, onShowSignUp }) => {
+//   const [username, setUsername] = useState('');
 //   const [password, setPassword] = useState('');
-//   const history = useHistory();
 
-//   const handleLogin = (e) => {
+//   const handleSubmit = (e) => {
 //     e.preventDefault();
-//     // Add authentication logic here
-//     history.push('/movies');
+//     onLogin(username, password);
 //   };
 
 //   return (
-//     <div className="login-page">
-//       <h1>Login</h1>
-//       <form onSubmit={handleLogin}>
-//         <input
-//           type="email"
-//           value={email}
-//           onChange={(e) => setEmail(e.target.value)}
-//           placeholder="Email"
-//           required
-//         />
-//         <input
-//           type="password"
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
-//           placeholder="Password"
-//           required
-//         />
-//         <button type="submit">Login</button>
-//       </form>
+//     <div className='login-bg'>
+//       <div className="login">
+//         <h1>Login</h1>
+//         <form onSubmit={handleSubmit}>
+//           <div>
+//             <label>Username:</label>
+//             <input
+//               type="text"
+//               value={username}
+//               onChange={(e) => setUsername(e.target.value)}
+//               required
+//             />
+//           </div>
+//           <div>
+//             <label>Password:</label>
+//             <input
+//               type="password"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               required
+//             />
+//           </div>
+//           <button type="submit">Login</button>
+//           <button type="button" onClick={onShowSignUp}>Sign Up</button>
+//         </form>
+//       </div>
 //     </div>
 //   );
 // };
 
-// export default Login;
+// export default LoginForm;
+
+
 
 
 import React, { useState } from 'react';
 
-const LoginForm = ({ onLogin }) => {
+const LoginForm = ({ onLogin, onShowSignUp }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -50,32 +57,35 @@ const LoginForm = ({ onLogin }) => {
     onLogin(username, password);
   };
 
+  
   return (
-    <div className='login-bg'>
-    <div className="login">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <div className='background' style={{ backgroundImage: 'url("//img.freepik.com/free-photo/movie-background-collage_23-2149876028.jpg")' }}>
+      <h1>Movie Recommendation System</h1>
+      <div className="login">
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Username:</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Login</button>
+          <button type="button" onClick={onShowSignUp}>Sign Up</button>
+        </form>
+      </div>
     </div>
   );
 };
